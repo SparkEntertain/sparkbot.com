@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<meta 
+     name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+/>
+    <title>Spark by mufni</title>
+    <!--PRELOADER-->
+    <!--    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+
+                        <script>
+                            $(document).ready(function() {
+                                $(".preloader").fadeOut();
+                            })
+                        </script>-->
+
+        
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style-cuaca.css">
+
+</head>
+<body id="vantajs-bg" onload="nem()">
+
+
+    <!--  <div class="preloader">
+                            <div class="loading">
+                                <img style="margin-left:30%" src="log.gif" width="80">
+                                <p style="text-align:center">
+                                    Harap Tunggu
+                                </p>
+                                <br>
+                                <p style="text-align:center">
+                                    <b>note: maaf mengganggu, loading sangat diperlukan agar data web bisa termuat 100%, dan agar web berjalan dengan baik!!
+                                </p>
+
+                            </div>
+                        </div>-->
+
+    <!--header-->
+    
+    <div id="all"> <!--Deteksi landscape-->
+    <div class="head"></div>
+    <!--endheader-->
+    <div class="clock" id="clock">
+        <p id="MyClockDisplay" class="MyClockDisplay"></p>
+    </div>
+    <h4 id="chatLog" style="text-align:left"></h4>
+    
+    <!--JAWABAN-->
+    <h5 id="interaksi" style="font-family:font0;display:none"></h5>
+    <audio id="aud" src="thefatrat close to the sun.mp3" autoplay="true"></audio>
+    <!--PICK COLOR-->
+    <div id="col" class="colr">
+        <input class="color" id="color" type="color"><button class="pick" onclick="pick()"><b>Pick</b></button><br><button class="rmv" id="rmv" onclick="rmv()"><b>hapus pick color</b></button>
+    </div>
+    <!--END PICK-->
+
+    <div class="input-cnt" id="inp">
+        <input placeholder="ketik sesuatu....." class="xcx" id="userBox" type="text" onkeydown="if(event.keyCode == 13){talk()}">
+        <button class="material-icons" onclick="talk();mtk()">💬</button>
+    </div>
+
+
+    <!--nama-->
+    <div style="display:none" id="nma">
+        <p style="font-family:font0;background-color:white;color:black;border-radius:5px 5px 5px 0;padding-left:5px">
+            Silahkan konfirmasi nama kamu ya agar aku bisa mengenalimu🙂
+        </p>
+        <input style="background-color:white;color:black" type="text" id="nama" placeholder="KONFIRMASI NAMA KAMU">
+        <br>
+        <div id="konf">
+            <button onclick="konfir()" id="konfirmasi">konfirmasi</button><button onclick="hps()" id="hps">tidak mau mengatakan</button>
+        </div>
+    </div>
+
+    <!--QUIZ GAME-->
+
+    <div class="container" id="container">
+        <div id="question1">
+            1. Jika perlu waktu merebus 20 menit agar sebutir telur bisa matang, berapa lama waktu merebus yang dibutuhkan agar 10 butir telur bisa matang?
+            <div id="telur"></div>
+        </div>
+        <div id="answer-button1" class="btn-grid">
+            <button onclick="right1()" id="a1" class="btn">20 menit</button>
+            <button onclick="wrong1()" id="b1" class="btn">200 menit</button>
+            <button onclick="wrong1()" id="c1" class="btn">30 menit</button>
+            <button onclick="wrong1()" id="d1" class="btn">25 menit</button>
+        </div>
+        <!--pertanyaan 2-->
+        <div id="question2">
+            2. Apakah huruf keempat dalam <b>abjad</b>?
+            <div id="huruf"></div>
+        </div>
+        <div id="answer-button2" class="btn-grid">
+            <button onclick="wrong2()" id="a2" class="btn">huruf D</button>
+            <button onclick="wrong2()" id="b2" class="btn">huruf J</button>
+            <button onclick="right2()" id="c2" class="btn">huruf A</button>
+            <button onclick="wrong2()" id="d2" class="btn">huruf M</button>
+        </div>
+        <!--pertanyaan 3-->
+        <div id="question3">
+            3. Benda mana yang lebih berat: kapas 10 kilo atau besi 10 kilo?
+            <div id="besi"></div>
+        </div>
+        <div id="answer-button3" class="btn-grid">
+            <button onclick="wrong3()" id="a3" class="btn">kapas</button>
+            <button onclick="right3()" id="b3" class="btn">sama berat</button>
+            <button onclick="wrong3()" id="c3" class="btn">besi</button>
+        </div>
+
+        <!--pertanyaan 4-->
+        <div id="question4">
+            4. Seorang pria terjebak di dalam gua, ia kebingungan karena gua tersebut gelap. Di tangannya ada lilin dan obor. Apa yang harus ia nyalakan terlebih dahulu?
+            <div id="goa"></div>
+        </div>
+        <div id="answer-button4" class="btn-grid">
+            <button onclick="wrong4()" id="a4" class="btn">lilin</button>
+            <button onclick="wrong4()" id="b4" class="btn">obor berat</button>
+            <button onclick="wrong4()" id="c4" class="btn">kayu</button>
+            <button onclick="right4()" id="d4" class="btn">korek api</button>
+        </div>
+
+        <!--pertanyaan 5-->
+        <div id="question5">
+            5. Pintu apa yang didorong oleh 7 orang tidak bisa terbuka?
+            <div id="pintu"></div>
+        </div>
+        <div id="answer-button5" class="btn-grid">
+            <button onclick="wrong5()" id="a5" class="btn">bank</button>
+            <button onclick="wrong5()" id="b5" class="btn">berangkas</button>
+            <button onclick="right5()" id="c5" class="btn">pintu yang bertuliskan geser</button>
+            <button onclick="wrong5()" id="d5" class="btn">pintu kayu</button>
+        </div>
+
+        <!--pertanyaan 6-->
+        <div id="question6">
+            6. Kenapa pohon mangga besar yang ada di depan rumah harus ditebang?
+            <div id="mangga"></div>
+        </div>
+        <div id="answer-button6" class="btn-grid">
+            <button onclick="wrong6()" id="a6" class="btn">agar bangunan dibsekitarnya aman</button>
+            <button onclick="wrong6()" id="b6" class="btn">karena pohon sudah tua</button>
+            <button onclick="wrong6()" id="c6" class="btn">karena  tidak berbuah</button>
+            <button onclick="right6()" id="d6" class="btn">karena kalau dicabut berat</button>
+        </div>
+
+        <!--pertanyaan7-->
+        <div id="question7">
+            7. Sebutkan salah satu planet yang paling banyak dikunjungi orang?
+            <div id="planet"></div>
+        </div>
+        <div id="answer-button7" class="btn-grid">
+            <button onclick="wrong7()" id="a7" class="btn">mars</button>
+            <button onclick="wrong7()" id="b7" class="btn">bulan</button>
+            <button onclick="right7()" id="c7" class="btn">hollywood</button>
+            <button onclick="wrong7()" id="d7" class="btn">planet ban</button>
+        </div>
+        <!--pertanyaan8 -->
+        <div id="question8">
+            8. Hewan apa yang tidak boleh di POM bensin?
+            <div id="denied"></div>
+        </div>
+        <div id="answer-button8" class="btn-grid">
+            <button onclick="right8()" id="a8" class="btn">kodok ngorek</button>
+            <button onclick="wrong8()" id="b8" class="btn">kambing</button>
+            <button onclick="wrong8()" id="c8" class="btn">semut</button>
+            <button onclick="wrong8()" id="d8" class="btn">gajah</button>
+        </div>
+        <!--pertanyaan9 -->
+        <div id="question9">
+            9. Siapa yang selalu jadi korban pemerasan?<br>
+            <div id="pemerasan"></div>
+        </div>
+        <div id="answer-button9" class="btn-grid">
+            <button onclick="wrong9()" id="a9" class="btn">manusia</button>
+            <button onclick="wrong9()" id="b9" class="btn">teman</button>
+            <button onclick="wrong9()" id="c9" class="btn">ayam</button>
+            <button onclick="right9()" id="d9" class="btn">sapi</button>
+        </div>
+        <!--pertanyaan 10-->
+        <div id="question10">
+            10. rumus kimia metanol?
+            <div id="metanol"></div>
+        </div>
+        <div id="answer-button10" class="btn-grid">
+            <button onclick="wrong10()" id="a10" class="btn">CH<sub>3</sub></button>
+            <button onclick="right10()" id="b10" class="btn">CH<sub>3</sub>ON</button>
+            <button onclick="wrong10()" id="c10" class="btn">C<sub>3</sub>OH</button>
+            <button onclick="wrong10()" id="d10" class="btn">CHOH</button>
+        </div>
+    </div>
+    <!--NEXT BUTTON-->
+    <button onclick="soal2()" id="next1" class="next1">Lanjut</button>
+    <button onclick="soal3()" id="next2" class="next1">Lanjut</button>
+    <button onclick="soal4()" id="next3" class="next1">Lanjut</button>
+    <button onclick="soal5()" id="next4" class="next1">Lanjut</button>
+    <button onclick="soal6()" id="next5"
+        class="next1">Lanjut</button>
+    <button onclick="soal7()" id="next6"
+        class="next1">Lanjut</button>
+
+    <button onclick="soal8()" id="next7" class="next1">Lanjut</button>
+    <button onclick="soal9()" id="next8" class="next1">Lanjut</button>
+    <button onclick="soal10()" id="next9"
+        class="next1">Lanjut</button>
+
+    <div id="conbut">
+        <button onclick="views()" id="next10" class="next1">Lihat score</button>
+        <button onclick="rep()" id="repe" class="next1">ulangi</button>
+        <button onclick="sele()" id="don" class="next1">Keluar</button>
+    </div>
+
+
+    <!--START BUTTON-->
+    <div class="start0" id="start0">
+        <p id="place" style="text-align:center">
+            Quiz Game<br><b>🔍</b>
+        </p>
+        <button onclick="func()" id="bhj" class="start0">MULAI</button>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div id="score">
+        skor kamu:<br>
+        <b> <p id="a">
+        </p>
+            <p id="b">
+            </p>
+            <p id="c">
+            </p>
+            <p id="d">
+            </p>
+            <p id="e">
+            </p>
+            <p id="f">
+            </p>
+            <p id="g">
+            </p>
+            <p id="h">
+            </p>
+            <p id="i"></p>
+            <p id="j">
+            </p>
+            <h3 id="total"></h3>
+        </b>
+    </div>
+
+
+    <!---END QUIZ-->
+
+    <div onclick="bro()" class="gallery1" id="gallery1">
+
+        <div id="img-icon" class="image-container">
+            <img class="qui" src="bg_quiz.jpg" />
+            <p id="img-des" class="image-description">
+                Quiz Game
+            </p>
+        </div>
+        </div>
+        </div>
+        
+        <!---cuaca
+            <div id="wadah-cuaca">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <h1 style="color: #F9F9F9;">Cek cuaca</h1>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control input-keyword" placeholder="ketik nama kota/negara" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-primary" type="button" id="button-addon2">Telusuri</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 result">
+    </div>
+</div>-->
+        <script src="sweet-alert.js"></script>
+    <!--    <script type="text/javascript" src="script-cuaca.js">-->
+        </script>
+        <script src="know.js"></script>
+        <script src="brain.js"></script>
+        <script src="quiz.js"></script>
+    </body>
+</html>
